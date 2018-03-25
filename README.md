@@ -10,10 +10,10 @@ The project has two parts:
 ## Getting up and running
 
 * Make sure python (version 3.5+) and node JS are installed on your system
-* Install Flask into the python environment using `pip install flask`
+* Install Flask into the python environment using `pip3 install flask`
 * Navigate to the `client` folder and run `npm install`
 * Once dependencies are installed, run `npm run build` to build the client project
-* Navigate to the `server` folder, run `python run_server.py`
+* Navigate to the `server` folder, run `python3 run_server.py`
 * Open http://localhost:5000/ to access the activity
 
 ## Task
@@ -49,4 +49,3 @@ Demonstrate what you can do by adding your own functionality, e.g.
 
 # Next Steps
 Implement as much as you reasonably can, and document any ideas that you don't have the time to build - we may have the opportunity to try and implement some of them together.
-

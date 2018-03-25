@@ -4,23 +4,33 @@ app = Flask(__name__, static_folder=None)
 
 CLIENT_FOLDER = os.path.abspath('../client/build')
 
+sequence = ['C#', 'D', 'F', 'D#', 'G', 'G#', 'A', 'B', 'Eb', 'Gb', 'A']
+current_index = -1
+
 @app.route('/')
 def welcome():
     return render_template('welcome.html')
 
 @app.route('/note', methods=['GET', 'POST'])
 def note():
+    global sequence
+    global current_index
     result = None
 
     if request.method == 'POST':
         notes = request.get_json()
-        if 'C#' in notes:
-            result = True
+        if sequence[current_index] in notes:
+            if current_index == len(sequence) - 1:
+                current_index = -1
+                result = {'status': True, 'next': False}
+            else:
+                result = {'status': True, 'next': True}
         else:
-            result = False
+            result = {'status': False}
     else:
-        result = {'note': 'C#'}
-    
+        current_index = current_index + 1
+        result = {'note': sequence[current_index]}
+
     return jsonify(result)
 
 @app.route('/piano/', methods=['GET'])
